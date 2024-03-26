@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hj.it.sieqk.dao.KqDao">
+
+    <insert id="insertApply">
+        INSERT INTO apply_t (
+            id,
+            instanceId,
+            taskId,
+            businessKey,
+            appName,
+            instanceType,
+            instanceFormType,
+            title,
+            startUserId,
+            startZhName,
+            assignee,
+            wfState,
+            startTime,
+            opinion,
+            flag
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+          (
+            #{item.id},
+            #{item.instanceId},
+            #{item.taskId},
+            #{item.businessKey},
+            #{item.appName},
+            #{item.instanceType},
+            #{item.instanceFormType},
+            #{item.title},
+            #{item.startUserId},
+            #{item.startZhName},
+            #{item.assignee},
+            #{item.wfState},
+            #{item.startTime},
+            #{item.opinion},
+            #{item.flag}
+          )
+        </foreach>
+    </insert>
+
+    <insert id="insertVacationDetail">
+        INSERT INTO vacation_detail_t (
+            id,
+            `type`,
+            lastFlag,
+            rejectFlag,
+            appName,
+            instanceFormType,
+            instanceId,
+            userId,
+            zhName,
+            orgName,
+            telephone,
+            socialBase,
+            contractBase,
+            annualLeBalance,
+            transferLeBalance,
+            leType,
+            leTypeReally,
+            leReason,
+            leDays,
+            poId,
+            poName,
+            isMuBirths,
+            beginDate,
+            beginTime,
+            endDate,
+            endTime,
+            isMorning,
+            leAttach,
+            leAttachList
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.type},
+            #{item.lastFlag},
+            #{item.rejectFlag},
+            #{item.appName},
+            #{item.instanceFormType},
+            #{item.instanceId},
+            #{item.userId},
+            #{item.zhName},
+            #{item.orgName},
+            #{item.telephone},
+            #{item.socialBase},
+            #{item.contractBase},
+            #{item.annualLeBalance},
+            #{item.transferLeBalance},
+            #{item.leType},
+            #{item.leTypeReally},
+            #{item.leReason},
+            #{item.leDays},
+            #{item.poId},
+            #{item.poName},
+            #{item.isMuBirths},
+            #{item.beginDate},
+            #{item.beginTime},
+            #{item.endDate},
+            #{item.endTime},
+            #{item.isMorning},
+            #{item.leAttach},
+            #{item.leAttachList}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertWorkOvertime">
+        INSERT INTO work_overtime_t (
+            id,
+            submitType,
+            userId,
+            zhName,
+            otType,
+            otPeriod,
+            poId,
+            poCode,
+            poName,
+            poRole,
+            poArea
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.submitType},
+            #{item.userId},
+            #{item.zhName},
+            #{item.otType},
+            #{item.otPeriod},
+            #{item.poId},
+            #{item.poCode},
+            #{item.poName},
+            #{item.poRole},
+            #{item.poArea}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertWorkOvertimeDeTaile">
+        INSERT INTO work_overtime_detail_t (
+        id,
+        parent_id,
+        userId,
+        otDate,
+        otHours,
+        otReason,
+        poName,
+        otArea
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.parent_id},
+            #{item.userId},
+            #{item.otDate},
+            #{item.otHours},
+            #{item.otReason},
+            #{item.poName},
+            #{item.otArea}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertMakeUpCard">
+        INSERT INTO make_up_card_t (
+        id,
+        userId,
+        zhName,
+        pReason,
+        pType,
+        pPeriod
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.userId},
+            #{item.zhName},
+            #{item.pReason},
+            #{item.pType},
+            #{item.pPeriod}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertMakeUpCardDetail">
+        INSERT INTO make_up_card_detail_t (
+            id,
+            parent_id,
+            userId,
+            pDate,
+            onTime,
+            offTime,
+            scheduleOn,
+            scheduleOff,
+            isLastOff
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.parent_id},
+            #{item.userId},
+            #{item.pDate},
+            #{item.onTime},
+            #{item.offTime},
+            #{item.scheduleOn},
+            #{item.scheduleOff},
+            #{item.isLastOff}
+            )
+        </foreach>
+    </insert>
+
+    <select id="findApply" resultType="com.hj.it.sieqk.vo.Apply">
+        select
+            id,
+            instanceId,
+            taskId,
+            businessKey,
+            appName,
+            instanceType,
+            instanceFormType,
+            title,
+            startUserId,
+            startZhName,
+            assignee,
+            wfState,
+            startTime,
+            opinion,
+            flag
+         from  apply_t
+    </select>
+</mapper>
